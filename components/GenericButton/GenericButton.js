@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 export default class GenericButton extends React.Component {
   render () {
     return (
-      <TouchableHighlight>
-        <View style={this.state.containerLayout || {}}>
-          <Text style={this.state.textLayout || {}}>
-            {this.state.buttonText}
+      <TouchableHighlight onPress={() => this.props.onGenericPress()}>
+        <View style={this.props.containerLayout || {}}>
+          <Text style={this.props.textLayout || {}}>
+            {this.props.text}
           </Text>
         </View>
       </TouchableHighlight>
@@ -17,8 +17,8 @@ export default class GenericButton extends React.Component {
 };
 
 GenericButton.propTypes = {
-  buttonText: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   containerLayout: PropTypes.object,
   textLayout: PropTypes.object,
-  onPress: PropTypes.func
+  onGenericPress: PropTypes.func.isRequired
 }
