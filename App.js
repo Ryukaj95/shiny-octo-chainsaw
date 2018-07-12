@@ -1,8 +1,20 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, Alert, View, Button, TouchableHighlight } from 'react-native'
 
 export default class App extends React.Component {
-  render() {
+  popupAlert (text) {
+    Alert.alert(
+      `I'm an alert ! :)`,
+      `You clicked the ${text} button`,
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Ok'}
+      ],
+      { cancelable: false }
+    )
+  }
+
+  render () {
     return (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
