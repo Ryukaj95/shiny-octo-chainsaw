@@ -18,8 +18,14 @@ export default class GenericButton extends React.Component {
   render () {
     return (
       <TouchableHighlight onPress={() => this.props.onGenericPress()}>
-        <View style={this.getStylesheet(this.props.containerLayout)}>
-          <Text style={this.getStylesheet(this.props.textLayout)}>
+        <View style={this.getStylesheet(
+          { ...defaultStyle.container, ...this.props.containerLayout }
+        )}
+        >
+          <Text style={this.getStylesheet(
+            { ...defaultStyle.text, ...this.props.textLayout }
+          )}
+          >
             {this.props.text}
           </Text>
         </View>
@@ -27,6 +33,18 @@ export default class GenericButton extends React.Component {
     )
   }
 };
+
+const defaultStyle = {
+  text: {
+    color: 'rgba(0, 0, 0, 0.5)',
+    fontWeight: '100'
+  },
+  container: {
+    padding: 4,
+    backgroundColor: 'rgba(149, 149, 148, 0.4)',
+    borderRadius: 8
+  }
+}
 
 GenericButton.propTypes = {
   text: PropTypes.string.isRequired,
