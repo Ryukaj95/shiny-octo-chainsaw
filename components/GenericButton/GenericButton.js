@@ -22,11 +22,14 @@ export default class GenericButton extends React.Component {
 
   render () {
     return (
-      <TouchableHighlight onPress={() => this.props.onGenericPress()}>
-        <View style={this.getStylesheet(
-          defaultStyle.container, this.props.containerLayout
-        )}
-        >
+      <TouchableHighlight
+        onPress={() => this.props.onGenericPress()}
+        underlayColor={this.props.underlayColor || defaultStyle.underlayColor}
+        style={
+          this.getStylesheet(defaultStyle.container, this.props.containerLayout)
+        }
+      >
+        <View>
           <Text style={this.getStylesheet(
             defaultStyle.text, this.props.textLayout
           )}
@@ -48,13 +51,15 @@ const defaultStyle = {
     padding: 4,
     backgroundColor: 'rgba(149, 149, 148, 0.4)',
     borderRadius: 8
-  }
+  },
+  underlayColor: 'rgba(196, 196, 196, 1.0)'
 }
 
 GenericButton.propTypes = {
   text: PropTypes.string.isRequired,
   containerLayout: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
   textLayout: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+  underlayColor: PropTypes.string,
   onGenericPress: PropTypes.func.isRequired,
   clearStyle: PropTypes.bool
 }
