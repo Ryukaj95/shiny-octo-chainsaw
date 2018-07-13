@@ -1,15 +1,40 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, Alert, View, Button, TouchableHighlight } from 'react-native'
+import { GenericButton } from './components'
 
 export default class App extends React.Component {
-  render() {
+  popupAlert (text) {
+    Alert.alert(
+      `I'm an alert ! :)`,
+      `You clicked the ${text} button`,
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Ok'}
+      ],
+      { cancelable: false }
+    )
+  }
+
+  render () {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <GenericButton
+          onGenericPress={() => this.popupAlert('working')}
+          text='Test prova 123'
+          containerLayout={componentsStyle.popupButtonContainerStyle}
+          textLayout={componentsStyle.popupButtonStyle}
+        />
       </View>
-    );
+    )
+  }
+}
+
+const componentsStyle = {
+  popupButtonContainerStyle: {
+    backgroundColor: 'black'
+  },
+  popupButtonStyle: {
+    color: 'white'
   }
 }
 
@@ -18,6 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
