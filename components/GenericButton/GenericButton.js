@@ -9,7 +9,12 @@ export default class GenericButton extends React.Component {
     this.getStylesheet = this.getStylesheet.bind(this)
   }
 
-  getStylesheet (style) {
+  getStylesheet (defaultStyle, userStyle) {
+    const style =
+      this.props.clearStyle
+        ? userStyle
+        : {...defaultStyle, ...userStyle}
+
     if (_.isNil(style)) return {}
     if (_.isInteger(style)) return style
     if (_.isObject(style)) return StyleSheet.create({style}).style
@@ -19,11 +24,11 @@ export default class GenericButton extends React.Component {
     return (
       <TouchableHighlight onPress={() => this.props.onGenericPress()}>
         <View style={this.getStylesheet(
-          { ...defaultStyle.container, ...this.props.containerLayout }
+          defaultStyle.container, this.props.containerLayout
         )}
         >
           <Text style={this.getStylesheet(
-            { ...defaultStyle.text, ...this.props.textLayout }
+            defaultStyle.text, this.props.textLayout
           )}
           >
             {this.props.text}
@@ -50,5 +55,6 @@ GenericButton.propTypes = {
   text: PropTypes.string.isRequired,
   containerLayout: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
   textLayout: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-  onGenericPress: PropTypes.func.isRequired
+  onGenericPress: PropTypes.func.isRequired,
+  clearStyle: PropTypes.bool
 }
