@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Button Test",
+    "icon": "./img/appIcon.png",
+    "version": "a0.1",
+    "slug": "buttontest",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.ryuden.buttontest"
+    },
+    "android": {
+      "package": "com.ryuden.buttontest"
+    }
   }
 }
